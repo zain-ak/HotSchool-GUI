@@ -6,17 +6,17 @@ attempt at creating a desktop GUI application.
 - The application is linked to a MySQL backend using JDBC and MySQL Connector. The front tables (`TableViews`) are loaded from the database dynamically, and whenever any changes are made to the database, they are updated through the `ObservableList`. A refresh button was added so that the latest changes can be seen in case any changes are made on the back-end;
 - Table items can be clicked to bring up an information card for any given course or student. These cards include a `ListView` to view enrolled students/courses;
 - The *Add Student* and *Add Course* buttons allow for user-created students/courses. The user will know if the changes are successful as the `TableView` will immediately reflect the changes on the main window:
-  <br><br>
+  <br>
   #### Adding a Student
   <img src="AddingStudent.gif" width="700" /> 
   <br><br>
   #### Adding a Course
-  <img src="AddingCourse.gif" width="700" /> <br>
+  <img src="AddingCourse.gif" width="700" /> <br><br>
 - The *Enroll Student* and *Un-enroll Student*  buttons allow users to add or remove students from courses. User input has been made easy by loading the `ComboBox` list of courses dynamically based on the student selected in the first `ComboBox` and querying the database for what courses they're (not)enrolled in
   - A `Label` has been used in each of these dialogs if the changes made to the database are successful or not. Because of this, a *Cancel* button has also been added to close the dialog box
-  <br><br>
+  <br>
   #### Enrolling & Unenrolling
-  <br> <img src="EnrollingUnEnrolling.gif" width="700"> <br> 
+  <br> <img src="EnrollingUnEnrolling.gif" width="700" /> <br> 
 
 
 ## Remarks
