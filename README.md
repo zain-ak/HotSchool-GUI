@@ -15,7 +15,7 @@ attempt at creating a desktop GUI application.
 - The *Enroll Student* and *Un-enroll Student*  buttons allow users to add or remove students from courses. User input has been made easy by loading the `ComboBox` list of courses dynamically based on the student selected in the first `ComboBox` and querying the database for what courses they're (not)enrolled in
   - A `Label` has been used in each of these dialogs if the changes made to the database are successful or not. Because of this, a *Cancel* button has also been added to close the dialog box
   <br>
-  <h4>Enrolling & Unenrolling/h4> 
+  <h4>Enrolling & Unenrolling</h4> 
   <br> <img src="EnrollingUnEnrolling.gif" width="700" /> <br> 
 
 
