@@ -12,7 +12,7 @@ public class DBConnector {
             String driverName = "com.mysql.jdbc.Driver";
             Class.forName(driverName);
             try {
-                String url = "jdbc:mysql://localhost:3306/HotSummer?autoReconnect=true";
+                String url = "jdbc:mysql://127.0.0.1:3306/HotSummer?autoReconnect=true";
                 String username = "root";
                 String password = "zain";
                 con = DriverManager.getConnection(url, username, password);

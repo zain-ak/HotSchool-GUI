@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_hotschoolgui" default="compile.module.hotschoolgui">
+  <dirname property="module.hotschoolgui.basedir" file="${ant.file.module_hotschoolgui}"/>
+  
+  <property name="module.jdk.home.hotschoolgui" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.hotschoolgui" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.hotschoolgui" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.hotschoolgui" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="hotschoolgui.output.dir" value="${module.hotschoolgui.basedir}/out/production/HotSchoolGUI"/>
+  <property name="hotschoolgui.testoutput.dir" value="${module.hotschoolgui.basedir}/out/test/HotSchoolGUI"/>
+  
+  <path id="hotschoolgui.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="hotschoolgui.module.production.classpath">
+    <path refid="${module.jdk.classpath.hotschoolgui}"/>
+    <path refid="library.mysql-connector-java-5.1.48-bin.classpath"/>
+  </path>
+  
+  <path id="hotschoolgui.runtime.production.module.classpath">
+    <pathelement location="${hotschoolgui.output.dir}"/>
+    <path refid="library.mysql-connector-java-5.1.48-bin.classpath"/>
+  </path>
+  
+  <path id="hotschoolgui.module.classpath">
+    <path refid="${module.jdk.classpath.hotschoolgui}"/>
+    <pathelement location="${hotschoolgui.output.dir}"/>
+    <path refid="library.mysql-connector-java-5.1.48-bin.classpath"/>
+  </path>
+  
+  <path id="hotschoolgui.runtime.module.classpath">
+    <pathelement location="${hotschoolgui.testoutput.dir}"/>
+    <pathelement location="${hotschoolgui.output.dir}"/>
+    <path refid="library.mysql-connector-java-5.1.48-bin.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.hotschoolgui">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.hotschoolgui">
+    <patternset refid="excluded.from.module.hotschoolgui"/>
+  </patternset>
+  
+  <path id="hotschoolgui.module.sourcepath">
+    <dirset dir="${module.hotschoolgui.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.hotschoolgui" depends="compile.module.hotschoolgui.production,compile.module.hotschoolgui.tests" description="Compile module HotSchoolGUI"/>
+  
+  <target name="compile.module.hotschoolgui.production" depends="register.custom.compilers" description="Compile module HotSchoolGUI; production classes">
+    <mkdir dir="${hotschoolgui.output.dir}"/>
+    <javac2 destdir="${hotschoolgui.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.hotschoolgui}/javac">
+      <compilerarg line="${compiler.args.hotschoolgui}"/>
+      <bootclasspath refid="hotschoolgui.module.bootclasspath"/>
+      <classpath refid="hotschoolgui.module.production.classpath"/>
+      <src refid="hotschoolgui.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.hotschoolgui"/>
+    </javac2>
+    
+    <copy todir="${hotschoolgui.output.dir}">
+      <fileset dir="${module.hotschoolgui.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.hotschoolgui.tests" depends="register.custom.compilers,compile.module.hotschoolgui.production" description="compile module HotSchoolGUI; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.hotschoolgui" description="cleanup module">
+    <delete dir="${hotschoolgui.output.dir}"/>
+    <delete dir="${hotschoolgui.testoutput.dir}"/>
+  </target>
+</project>
